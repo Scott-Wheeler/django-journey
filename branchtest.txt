@@ -1,3 +1,53 @@
 This is to test local development on the ScottWheelNett-django-dev branch.
 I am not sure if the branch I'm getting is branched from master on my local machine or checkout the remote branch itself.
 git checkout -b origin/ScottWheelNett-django-dev
+
+I tried this:
+git pull origin ScottWheelNett-django-dev
+
+These edits made on local computer.
+
+[scott@scott-pc django-journey]$ git branch -a
+  master
+* origin/ScottWheelNett-django-dev
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/ScottWheelNett-django-dev
+  remotes/origin/ScottWheelNett-documentation
+  remotes/origin/master
+[scott@scott-pc django-journey]$ kate branchtest.txt 
+
+It still doesn't show the * next to a remote branch, but ok
+
+
+I tried:
+[scott@scott-pc django-journey]$ git push
+fatal: The current branch origin/ScottWheelNett-django-dev has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin origin/ScottWheelNett-django-dev
+
+[scott@scott-pc django-journey]$ git push --set-upstream origin origin/ScottWheelNett-django-dev
+Username for 'https://github.com': ScottWheelNett 
+Password for 'https://ScottWheelNett@github.com': 
+Total 0 (delta 0), reused 0 (delta 0)
+To https://github.com/ScottWheelNett/django-journey.git
+ * [new branch]      origin/ScottWheelNett-django-dev -> origin/ScottWheelNett-django-dev
+Branch 'origin/ScottWheelNett-django-dev' set up to track remote branch 'origin/ScottWheelNett-django-dev' from 'origin'.
+[scott@scott-pc django-journey]$ git branch
+  master
+* origin/ScottWheelNett-django-dev
+[scott@scott-pc django-journey]$ git branch --all
+  master
+* origin/ScottWheelNett-django-dev
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/ScottWheelNett-django-dev
+  remotes/origin/ScottWheelNett-documentation
+  remotes/origin/master
+  remotes/origin/origin/ScottWheelNett-django-dev
+[scott@scott-pc django-journey]$ kate branchtest.txt 
+[scott@scott-pc django-journey]$ 
+
+
+
+
+git push --set-upstream origin ScottWheelNett-django-dev
