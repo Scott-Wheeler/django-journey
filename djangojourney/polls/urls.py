@@ -9,7 +9,7 @@ urlpatterns = [
     path("", views.index, name="index"),
 
     # /polls/5/
-    path("<int:question_id>/", views.detail, name="detail"),
+    path("specifics/<int:question_id>/", views.detail, name="detail"),
 
     # /polls/5/results/
     path("<int:question_id>/results/", views.results, name="results"),
