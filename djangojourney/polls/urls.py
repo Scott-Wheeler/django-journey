@@ -4,12 +4,15 @@ from . import views
 
 ## /polls/ has been stripped off by the root URLconf
 
+# app_name defines the application namespace
+app_name = "polls"
+
 urlpatterns = [
     # /polls/
     path("", views.index, name="index"),
 
     # /polls/5/
-    path("specifics/<int:question_id>/", views.detail, name="detail"),
+    path("<int:question_id>/", views.detail, name="detail"),
 
     # /polls/5/results/
     path("<int:question_id>/results/", views.results, name="results"),
