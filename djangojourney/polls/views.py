@@ -10,6 +10,7 @@ from django.urls.base import reverse
 from django.views import generic
 from django.utils import timezone
 
+from django.db.models import Count
 
 ## A ListView abstracts the concept of "display a list of objects"
 ## A DetailView abscracts the concept of "show the details of a particular type of object"
@@ -24,6 +25,10 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         return Question.objects.filter(
             pub_date__lte=timezone.now()
+        ).annotate(
+            Count("choice")
+        ).filter(
+            choice__count__gt=0
         ).order_by("-pub_date")[:5]
 
 #         return Question.objects.order_by("-pub_date")[:5]
@@ -57,7 +62,19 @@ class DetailView(generic.DetailView):
     template_name = "polls/detail.html"
 
     def get_queryset(self):
-        return Question.objects.filter(pub_date__lte=timezone.now())
+        return Question.objects.filter(
+            pub_date__lte=timezone.now()
+        ).annotate(
+            Count("choice")
+        ).filter(
+            choice__count__gt=0
+        )
+        
+## this doesn't work because it returns a list:
+#         return [
+#             question for question in queryset
+#             if len(question.choice_set.all()) != 0
+#         ]
 
 
 ## detail view as a function
@@ -81,6 +98,15 @@ class DetailView(generic.DetailView):
 class ResultsView(generic.DetailView):
     model = Question
     template_name = "polls/results.html"
+    
+    def get_queryset(self):
+        return Question.objects.filter(
+            pub_date__lte=timezone.now()
+        ).annotate(
+            Count("choice")
+        ).filter(choice__count__gt=0
+        )
+
 
     
 ## results view as a function
