@@ -3,14 +3,24 @@ from django.contrib import admin
 # Register your models here.
 from .models import Question, Choice
 
+
+## register Choice objects in the Question admin page
+class ChoiceInline(admin.TabularInline):
+    model = Choice
+    extra = 3
+
+
 class QuestionAdmin(admin.ModelAdmin):
     fieldsets = [
         (None,               {"fields": ["question_text"]}),
-        ("Date information", {"fields": ["pub_date"]})
+        ("Date information", {"fields": ["pub_date"], "classes": ["collapse"]})
     ]
+
+    inlines = [ChoiceInline]
+
 
 #     fields = ["pub_date", "question_text"]  ## customize the order of fields
 
 admin.site.register(Question, QuestionAdmin)
 
-admin.site.register(Choice)
+# admin.site.register(Choice)
