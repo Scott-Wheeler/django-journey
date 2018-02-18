@@ -1,11 +1,13 @@
 # django-journey
-My journey into Django
+My journey into Django (thank you GitHub name suggestions)
 
 I'm learning Django, as well as GitHub.
 
 This is going to be fun! :)
 
-I've already started on the official tutorial on the Django site. I could upload the code I have so far, but that would be less fun. I'm going to start the tutorial from scratch again. I was only on page 2 anyway :P
+I've finished the official tutorial on the Django site.
+Next I'm going to do the Django REST Framework tutorial.
+
 
 All of the edits in this tutorial are being done manually (rather than copypaste) so that I learn more.
 
