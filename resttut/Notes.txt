@@ -48,3 +48,5 @@ adds context to Response objects so that content negotiation can be performed
 returns 405 Method Not Allowed responses when appropriate
 handles any ParseError exceptions when accessing request.data with malformed input.
 
+using the Response object, it is no longer necessary to return JSON, it returns the appropriate content type for the client. Similar for Request. Can accept/emit any type.
+
