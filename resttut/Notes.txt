@@ -1,0 +1,50 @@
+---------------
+1 Serialization
+---------------
+Use a Serializer(rest_framework.serializer.ModelSerializer) to serialize to JSON and create and update instances
+If implementing a custom serializer, implement create and update methods
+Serializer classes are similar to Form classes
+code = serializers.CharField(style={'base_template': 'textarea.html'}) 
+.. is similar to forms.CharField(widget=widgets.Textarea)
+
+# serialization
+from rest_framework.renderers import JSONRenderer
+
+snippet = Snippet(code='print("hello world")')
+serializer = SnippetSerializer(snippet)
+content = JSONRenderer().render(serializer.data)
+
+# deserialization
+from django.utils.six import BytesIO
+from rest_framework.parsers import JSONParser
+
+stream = BytesIO(content)
+data = JSONParser().parse(stream)
+serializer = SnippetSerializer(data=data)
+serializer.is_valid()
+serializer.validated_data
+snippet = serializer.save()
+
+implement the views to return JsonResponse and use GET, POST, PUT, DELETE
+httpie to test
+
+
+------------------------
+2 Requests and Responses
+------------------------
+
+rest_framework has a Request object that extends HttpRequest
+request.POST  # Only handles form data.  Only works for 'POST' method.
+request.data  # Handles arbitrary data.  Works for 'POST', 'PUT' and 'PATCH' methods.
+
+rest_framework also introduces Response object that is a type of TemplateResponse that takes unrendered content and uses content negotiation to determine the correct content type to return to the client.
+return Response(data)  # Renders to content type as requested by the client.
+
+rest_framework.status contains status codes with explicit names
+
+use @api_view and ApiView to wrap views
+ensures receiving Request instances in the view
+adds context to Response objects so that content negotiation can be performed
+returns 405 Method Not Allowed responses when appropriate
+handles any ParseError exceptions when accessing request.data with malformed input.
+
