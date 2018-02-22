@@ -52,3 +52,25 @@ using the Response object, it is no longer necessary to return JSON, it returns 
 
 format suffixes allow for choosing response format in urls
 eg: http://example.com/api/items/4.json
+it's only necessary to add ", format=None" to the view function headers. It seems to work without doing anything to the format parameter in the view. I guess it automatically passes it to the Response 
+
+To control Response using Accept header:
+http http://127.0.0.1:8000/snippets/ Accept:application/json  # Request JSON
+http http://127.0.0.1:8000/snippets/ Accept:text/html         # Request HTML
+
+To control Response using format suffix:
+http http://127.0.0.1:8000/snippets.json  # JSON suffix
+http http://127.0.0.1:8000/snippets.api   # Browsable API suffix
+
+To control Request using the Content-Type header.
+# POST using form data
+http --form POST http://127.0.0.1:8000/snippets/ code="print(123)"
+# POST using JSON
+http --json POST http://127.0.0.1:8000/snippets/ code="print(456)"
+
+http --debug ...
+
+access with a browser returns a fully web-browsable HTML-formatted representation of the resource which is a huge useability win and makes developing and using the API easier
+
+customizing the browsable api:
+http://www.django-rest-framework.org/topics/browsable-api/
