@@ -50,3 +50,5 @@ handles any ParseError exceptions when accessing request.data with malformed inp
 
 using the Response object, it is no longer necessary to return JSON, it returns the appropriate content type for the client. Similar for Request. Can accept/emit any type.
 
+format suffixes allow for choosing response format in urls
+eg: http://example.com/api/items/4.json
