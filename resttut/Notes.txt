@@ -74,3 +74,12 @@ access with a browser returns a fully web-browsable HTML-formatted representatio
 
 customizing the browsable api:
 http://www.django-rest-framework.org/topics/browsable-api/
+
+
+-------------------
+3 Class based views
+-------------------
+
+
+
+
