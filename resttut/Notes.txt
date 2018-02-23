@@ -80,6 +80,17 @@ http://www.django-rest-framework.org/topics/browsable-api/
 3 Class based views
 -------------------
 
+ApiView
 
+with mixins it is possible to compose views atop GenericAPIView and simply map http methods to the mixin methods
+
+with the mixins, can i just do "get = list" and "post = create"? Probably
+
+ListModelMixin
+CreateModelMixin
+
+RetrieveModelMixin
+UpdateModelMixin
+DestroyModelMixin
 
 
