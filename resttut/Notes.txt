@@ -93,4 +93,8 @@ RetrieveModelMixin
 UpdateModelMixin
 DestroyModelMixin
 
+even better is using the generic API views
+generics.ListAPIView
+generics.RetrieveUpdateDestroyAPIView
+then I only have to set "queryset = Snippet.objects.all()" and "serializer_class = SnippetSerializer"
 

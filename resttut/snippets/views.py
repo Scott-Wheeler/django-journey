@@ -14,38 +14,64 @@ from snippets.serializers import SnippetSerializer
 
 # Create your views here.
 
-class SnippetList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
+
+## Using generic class views ##
+
+class SnippetList(generics.ListAPIView):
     """
     List all code snippets, or create a new snippet
     """
     queryset = Snippet.objects.all()
     serializer_class = SnippetSerializer
-
-    def get(self, request, *args, **kwargs):
-        return self.list(request, *args, **kwargs)
     
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-
-class SnippetDetail(mixins.RetrieveModelMixin,
-                    mixins.UpdateModelMixin,
-                    mixins.DestroyModelMixin,
-                    generics.GenericAPIView):
+class SnippetDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     Retrieve, update, or delete a code snippet.
     """
     queryset = Snippet.objects.all()
     serializer_class = SnippetSerializer
     
-    def get(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
+    
+    
+    
+    
+## USING MIXINS ##
 
-    def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
+# class SnippetList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
+#     """
+#     List all code snippets, or create a new snippet
+#     """
+#     queryset = Snippet.objects.all()
+#     serializer_class = SnippetSerializer
+# 
+#     def get(self, request, *args, **kwargs):
+#         return self.list(request, *args, **kwargs)
+#     
+#     def post(self, request, *args, **kwargs):
+#         return self.create(request, *args, **kwargs)
+# 
+# class SnippetDetail(mixins.RetrieveModelMixin,
+#                     mixins.UpdateModelMixin,
+#                     mixins.DestroyModelMixin,
+#                     generics.GenericAPIView):
+#     """
+#     Retrieve, update, or delete a code snippet.
+#     """
+#     queryset = Snippet.objects.all()
+#     serializer_class = SnippetSerializer
+#     
+#     def get(self, request, *args, **kwargs):
+#         return self.retrieve(request, *args, **kwargs)
+# 
+#     def put(self, request, *args, **kwargs):
+#         return self.update(request, *args, **kwargs)
+#     
+#     def delete(self, request, *args, **kwargs):
+#         return self.destroy(request, *args, **kwargs)
     
-    def delete(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)
-    
+
+
+## USING Class Based Views ##
 
 # class SnippetList(APIView):
 #     """
@@ -96,7 +122,7 @@ class SnippetDetail(mixins.RetrieveModelMixin,
 
 
         
-        
+## USING Function based views with decorator ##        
 
 # @api_view(['GET', 'POST'])
 # def snippet_list(request, format=None):
