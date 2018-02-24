@@ -99,9 +99,10 @@ generics.RetrieveUpdateDestroyAPIView
 then I only have to set "queryset = Snippet.objects.all()" and "serializer_class = SnippetSerializer"
 
 
---------------------------------
-4 Authentication and Permissions
---------------------------------
+------------------------------
+4 Authentication & Permissions
+------------------------------
+
     Code snippets are always associated with a creator.
     Only authenticated users may create snippets.
     Only the creator of a snippet may update or delete it.
@@ -115,4 +116,10 @@ create a UserSerializer to add representations of Users to the API
 Because 'snippets' is a reverse relationship on the User model, it will not be included by default when using the ModelSerializer class, so we needed to add an explicit field for it.
 
 to use read-only views for the user representations, use the ListAPIView and RetrieveAPIView generic class-based views.
+
+django.contrib.auth.models.User is sent as a property of the request    
+override .perform_create() on the snippet views
+
+The source kwargument controls which attribute is used to populate a field,
+serializers.ReadOnlyField is like an untyped serializers.CharField(read_only=True)
 
