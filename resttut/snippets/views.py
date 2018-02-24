@@ -19,7 +19,7 @@ from snippets.permissions import IsOwnerOrReadOnly
 
 ## Using generic class views ##
 
-class SnippetList(generics.ListAPIView):
+class SnippetList(generics.ListCreateAPIView):
     """
     List all code snippets, or create a new snippet
     """

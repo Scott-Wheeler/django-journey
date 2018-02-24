@@ -135,3 +135,5 @@ the login doesn't work.
     http -a other:otherpassword POST http://127.0.0.1:8000/snippets/ code="print(123)"
     response is "Method Not Allowed"
     grrrr
+
+    figured it out it's because I was using ListAPIView when I should have been using ListCreateAPIView
