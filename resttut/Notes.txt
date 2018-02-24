@@ -123,3 +123,15 @@ override .perform_create() on the snippet views
 The source kwargument controls which attribute is used to populate a field,
 serializers.ReadOnlyField is like an untyped serializers.CharField(read_only=True)
 
+add login and logout views to the browsable api by simply including this urlpattern:
+url(r'^api-auth/', include('rest_framework.urls')),
+
+create custom permissions in <app>/permissions.py
+
+the login doesn't work.
+    I can't create snippets from the list view when authenticated.
+    when logged in as the wrong user, the detail page accepts PUT, PATCH, DELETE
+
+    http -a other:otherpassword POST http://127.0.0.1:8000/snippets/ code="print(123)"
+    response is "Method Not Allowed"
+    grrrr
