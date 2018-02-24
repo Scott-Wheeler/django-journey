@@ -109,3 +109,10 @@ then I only have to set "queryset = Snippet.objects.all()" and "serializer_class
 
 use pygments to highlight snippets on Snippet.save()
 make users with createsuperuser
+
+create a UserSerializer to add representations of Users to the API
+
+Because 'snippets' is a reverse relationship on the User model, it will not be included by default when using the ModelSerializer class, so we needed to add an explicit field for it.
+
+to use read-only views for the user representations, use the ListAPIView and RetrieveAPIView generic class-based views.
+
