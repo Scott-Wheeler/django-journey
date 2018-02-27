@@ -177,3 +177,30 @@ The complete set of default read/write operations (ModelViewSet):
 passing a renderer to detail_route() somehow makes sense
 detail_route by default responds to GET requests. Use the method argument for others.
 detail_route uses the method names to construct urls, can be overridden with url_path argument.
+
+can create views from ViewSet class, by binding the http methods to the required action for each view.
+ViewSet({'method': 'action', ...})
+
+for the default list views:
+snippet_list = SnippetViewSet({'get': 'list', 'post': 'create'})
+
+for the default detail views:
+snippet_detail = SnippetViewSet({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
+for the custom highlight view:
+snippet_highlight = SnippetViewSet({'get': 'highlight'}, renderer_classes=[StaticHTMLRenderer])
+
+When using ViewSets instead of Views it is not necessary to define the URLconf
+DefaultRouter automatically creates the API root view 
+
+register viewsets with a router is similar to providing urlpatterns
+router.register(r'prefix', views.WhateverViewSet)
+
+ViewSets are highly abstracted
+ViewSets ensure that URL conventions will be consistent across the API, minimizes the amount of code needed, and allows for concentrating on the interactions and representations the API provides rather than the specifics of the URL conf.
+Similarly to using class based generic views vs functions, using ViewSets is less explicit

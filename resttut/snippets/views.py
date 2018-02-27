@@ -18,13 +18,6 @@ from snippets.permissions import IsOwnerOrReadOnly
 
 # Create your views here.
 
-## API Root view
-@api_view(["GET"])
-def api_root(request, format=None):
-    return Response({
-        'users': reverse('user-list', request=request, format=format),
-        'snippets': reverse('snippet-list', request=request, format=format)
-    })
 
 
 ## Using ViewSets ##
@@ -51,9 +44,19 @@ class SnippetViewSet(viewsets.ModelViewSet):
 
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    This ViewSet automatically provides the "list" and "detail" actions.
+    """
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+# ## API Root view - provided automatically by DefaultRouter
+# @api_view(["GET"])
+# def api_root(request, format=None):
+#     return Response({
+#         'users': reverse('user-list', request=request, format=format),
+#         'snippets': reverse('snippet-list', request=request, format=format)
+#     })
 
 
 # ## Using generic class views ##
