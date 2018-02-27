@@ -165,3 +165,15 @@ Because using format suffixes, indicate on the highlight field that any format s
 settings in REST framework are all namespaced into a single dictionary setting, named REST_FRAMEWORK
 
 
+--------------------
+6 ViewSets & Routers
+--------------------
+ViewSets provide actions (read, update, list, detail, ...) rather than method handlers (GET, ...)
+
+The complete set of default read/write operations (ModelViewSet):
+'list', 'create', 'retrieve', 'update' and 'destroy'
+
+@detail_route decorator to create a custom action
+passing a renderer to detail_route() somehow makes sense
+detail_route by default responds to GET requests. Use the method argument for others.
+detail_route uses the method names to construct urls, can be overridden with url_path argument.
