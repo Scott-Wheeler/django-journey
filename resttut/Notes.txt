@@ -147,4 +147,17 @@ the login doesn't work.
 Use Hyperlinked APIs to improve cohesion and discoverability
 use rest_framework.reverse.reverse to return fully qualified URLs
 
+ways to represent relationships between entities:
+    Using primary keys.
+    Using hyperlinking between entities.
+    Using a unique identifying slug field on the related entity.
+    Using the default string representation of the related entity.
+    Nesting the related entity inside the parent representation.
+    Some other custom representation.
 
+The HyperlinkedModelSerializer has the following differences from ModelSerializer:
+    It does not include the id field by default.
+    It includes a url field, using HyperlinkedIdentityField.
+    Relationships use HyperlinkedRelatedField, instead of PrimaryKeyRelatedField.
+
+Because using format suffixes, indicate on the highlight field that any format suffixed hyperlinks it returns should use the '.html' suffix ...(..., format='html')
