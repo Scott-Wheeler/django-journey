@@ -195,4 +195,12 @@ snippet_detail = SnippetViewSet({
 for the custom highlight view:
 snippet_highlight = SnippetViewSet({'get': 'highlight'}, renderer_classes=[StaticHTMLRenderer])
 
+When using ViewSets instead of Views it is not necessary to define the URLconf
+DefaultRouter automatically creates the API root view 
 
+register viewsets with a router is similar to providing urlpatterns
+router.register(r'prefix', views.WhateverViewSet)
+
+ViewSets are highly abstracted
+ViewSets ensure that URL conventions will be consistent across the API, minimizes the amount of code needed, and allows for concentrating on the interactions and representations the API provides rather than the specifics of the URL conf.
+Similarly to using class based generic views vs functions, using ViewSets is less explicit
