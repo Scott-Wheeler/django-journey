@@ -177,3 +177,22 @@ The complete set of default read/write operations (ModelViewSet):
 passing a renderer to detail_route() somehow makes sense
 detail_route by default responds to GET requests. Use the method argument for others.
 detail_route uses the method names to construct urls, can be overridden with url_path argument.
+
+can create views from ViewSet class, by binding the http methods to the required action for each view.
+ViewSet({'method': 'action', ...})
+
+for the default list views:
+snippet_list = SnippetViewSet({'get': 'list', 'post': 'create'})
+
+for the default detail views:
+snippet_detail = SnippetViewSet({
+    'get': 'retrieve',
+    'put': 'update',
+    'patch': 'partial_update',
+    'delete': 'destroy'
+})
+
+for the custom highlight view:
+snippet_highlight = SnippetViewSet({'get': 'highlight'}, renderer_classes=[StaticHTMLRenderer])
+
+
