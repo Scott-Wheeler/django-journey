@@ -137,3 +137,14 @@ the login doesn't work.
     grrrr
 
     figured it out it's because I was using ListAPIView when I should have been using ListCreateAPIView
+
+
+
+----------------------------------
+5 Relationships & Hyperlinked APIs
+----------------------------------
+
+Use Hyperlinked APIs to improve cohesion and discoverability
+use rest_framework.reverse.reverse to return fully qualified URLs
+
+
