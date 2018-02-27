@@ -161,3 +161,7 @@ The HyperlinkedModelSerializer has the following differences from ModelSerialize
     Relationships use HyperlinkedRelatedField, instead of PrimaryKeyRelatedField.
 
 Because using format suffixes, indicate on the highlight field that any format suffixed hyperlinks it returns should use the '.html' suffix ...(..., format='html')
+
+settings in REST framework are all namespaced into a single dictionary setting, named REST_FRAMEWORK
+
+
