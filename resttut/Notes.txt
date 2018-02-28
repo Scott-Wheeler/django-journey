@@ -228,6 +228,8 @@ Snippet.objects.filter(owner__username="other")
 7 Schemas & Client libraries
 ----------------------------
 
+pip install coreapi, coreapi-cli
+
 A schema is a machine-readable document that describes the available API endpoints, their URLS, and what operations they support.
 useful for auto-generated documentation, and can also be used to drive dynamic client libraries
 
@@ -249,3 +251,16 @@ This works:
     http http://127.0.0.1:8000/schema/ Accept:application/coreapi+json
 
 The default output style of coreapi is to use the Core JSON encoding
+
+Now that our API is exposing a schema endpoint, we can use a dynamic client library to interact with the API.
+
+using the coreapi commandline client:
+    first load the schema
+        coreapi get http://127.0.0.1:8000/schema/
+    get the list of snippets
+        coreapi action snippets list
+    get a single snippet by passing a parameter
+        coreapi action snippets read --param id=1
+    get the highlight of a snippet by passing a parameter
+        coreapi action snippets highlight --param id=1
+    
