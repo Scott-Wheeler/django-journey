@@ -232,4 +232,20 @@ A schema is a machine-readable document that describes the available API endpoin
 useful for auto-generated documentation, and can also be used to drive dynamic client libraries
 
 Core API is a format-independent Document Object Model for representing Web APIs.
+Core API is a document specification for describing APIs. It is used to provide an internal representation format of the available endpoints and possible interactions that an API exposes. It can either be used server-side, or client-side.
 
+When used server-side, Core API allows an API to support rendering to a wide range of schema or hypermedia formats.
+
+When used client-side, Core API allows for dynamically driven client libraries that can interact with any API that exposes a supported schema or hypermedia format.
+
+REST framework supports either explicitly defined schema views, or automatically generated schemas. Since we're using viewsets and routers, we can simply use the automatic schema generation.
+
+
+The tutorial says that corejson will be available from the api root view, but it's not. It is available from /schema/ though..
+
+This does not work:
+    http http://127.0.0.1:8000/ Accept:application/coreapi+json
+This works:
+    http http://127.0.0.1:8000/schema/ Accept:application/coreapi+json
+
+The default output style of coreapi is to use the Core JSON encoding
