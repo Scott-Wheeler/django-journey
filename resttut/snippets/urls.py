@@ -5,7 +5,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from rest_framework.routers import DefaultRouter
 
 from snippets import views
-from snippets.views import SnippetViewSet, UserViewSet, api_root
+from snippets.views import SnippetViewSet, UserViewSet
 
 
 ## Using Routers ##
@@ -17,7 +17,9 @@ router.register(r'users', views.UserViewSet)
 
 # the API URLs are now automatically determined by the Router
 urlpatterns = [
-    url(r'^', include(router.urls))
+    url(r'^', include(router.urls)),
+    url(r'^api-auth/', include('rest_framework.urls'))
+    
 ]
 
 

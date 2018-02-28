@@ -204,3 +204,32 @@ router.register(r'prefix', views.WhateverViewSet)
 ViewSets are highly abstracted
 ViewSets ensure that URL conventions will be consistent across the API, minimizes the amount of code needed, and allows for concentrating on the interactions and representations the API provides rather than the specifics of the URL conf.
 Similarly to using class based generic views vs functions, using ViewSets is less explicit
+
+
+
+Used this in the shell to change the user of the snippets:
+
+from snippets.models import Snippet
+from django.contrib.auth.models import User
+
+scott = User.objects.filter(username="scott")[0]
+
+Snippet.objects.filter(owner__username="other")
+# <QuerySet [<Snippet: Snippet object (3)>, <Snippet: Snippet object (4)>, <Snippet: Snippet object (5)>, <Snippet: Snippet object (6)>]>
+for snippet in Snippet.objects.filter(owner__username="other"):
+    snippet.owner = scott
+    snippet.save()
+
+Snippet.objects.filter(owner__username="other")
+# <QuerySet []>
+
+
+----------------------------
+7 Schemas & Client libraries
+----------------------------
+
+A schema is a machine-readable document that describes the available API endpoints, their URLS, and what operations they support.
+useful for auto-generated documentation, and can also be used to drive dynamic client libraries
+
+Core API is a format-independent Document Object Model for representing Web APIs.
+
